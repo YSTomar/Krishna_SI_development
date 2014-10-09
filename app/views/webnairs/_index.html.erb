@@ -1,0 +1,27 @@
+
+<div class="container">
+ <h1>Listing Webnairs</h1>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Presentations</th>
+  </tr>
+
+<% current_user.webnairs.to_a.each do |w| %>
+  <tr>
+    <td><%= w.title %></td>
+    <td><%= w.description %></td>
+    <td><%= w.ppt_file_name %></td>
+    <td><%= link_to 'Edit', edit_webnair_path(w), :class => 'navbar-link' %></td>
+    <td><%= link_to 'Delete', w, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'navbar-link' %></td>
+    <td><%= link_to 'Launch', webnair_path(w) %></td>
+	<td><%= link_to 'show', w.ppt.url %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+
+
+ <%#= link_to 'Back', webnairs_path %> 
+

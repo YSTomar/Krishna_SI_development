@@ -1,0 +1,56 @@
+<div class="container">
+<h2>sales_host-view page</h2>
+
+
+	<div class="container" style ="background:#FFFFFF;">
+		<div class="row">
+			  <div class="span2">
+			  	<section>
+			  	<div><%= button_to "Create webnair", new_webnair_path, :class => "btn btn-primary btn-large btn-custom", :method => :get, :remote =>true %></div>
+
+			  	<div><%= button_to "Show webnairs", webnairs_path, :class => "btn btn-primary btn-large btn-custom", :method => :get, :remote =>true %></div>
+
+			  	<div><%= button_to "Create Presentation", new_presentation_path, :class => "btn btn-primary btn-large btn-custom", :method => :get, :remote =>true %>
+			  	</div>
+
+			  	<div><%= button_to "Show Presentations", presentations_path, :class => "btn btn-primary btn-large btn-custom", :method => :get, :remote =>true %></div>
+			  	</section>	
+			  </div>
+			  
+		  <div class="span8">
+		  	<div class="box3">
+		  		
+		  	</div>
+			<div class="row" id="box1">
+				<h3 style="text-align:center">Available presentations</h3>
+				 
+				 <% current_user.presentations.each do |pre| %>
+				 <div class="span2">
+				<center><b><%= pre.avatar_file_name %></b></center> 
+				 	<div>
+				 		<%= link_to(image_tag pre.pre_logo.url, :style => 'height:150px;') %>
+				 		<%#= link_to(image_tag(pre.pre_logo.url), pre.pre_logo.url(:original), :popup=>['original_image', 'height=300,width=250']) %>
+
+				 		</div>
+				 </div>
+				<% end %>
+				
+				<!-- <div class="span2">
+					<%= link_to(image_tag("presentation.jpg",:alt=>"twt"){},:href=>"www.google.com",:target=>"_blank") %>
+				</div>
+				<div class="span2"><%= image_tag("presentation.jpg", height: '180', width: '180') %></div>
+				<div class="span2"><%= image_tag("presentation.jpg", height: '180', width: '180') %></div>
+				
+				<div class="span2" id="webnair"><%= image_tag("presentation.jpg", height: '180', width: '180') %></div> -->
+			</div>
+		</div>
+
+		<div class="span2" style="float: right;">
+		
+			<% if user_signed_in? %>
+  					<strong><%= current_user.lastname %></strong><br />
+  					<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %><br>
+  					<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+  				<% end %>
+		</div>
+</div>

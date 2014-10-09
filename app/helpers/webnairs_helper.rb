@@ -1,0 +1,2 @@
+module WebnairsHelper
+end

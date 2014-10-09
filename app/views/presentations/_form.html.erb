@@ -1,0 +1,25 @@
+<div class="container">
+<%= form_for @presentation, :remote => true, :html => { :multipart => true } do |f| %>
+
+  <div>
+  	
+  	<%= f.hidden_field :user_id, :value => current_user.id %>
+  	
+      <%= f.label :title, :style => 'margin: 20px 0 -7px 0px'  %>
+      <%= f.text_field :title, autofocus: true, :style => 'margin: -2% 10% 0' %>
+  </div>
+  <div>
+      <%= f.label :description, :style => 'margin: 20px 0 -7px 0px' %>
+      <%= f.text_area :description, autofocus: true, :style => 'margin: -29px 113px 0;  height: 125px;' %>
+  </div>
+  <div style="margin:1% 0">
+  	<%= f.label :select_presentation, :style => 'margin: 20px 0 -7px 0px' %>
+  	<%= f.file_field :avatar, :style => 'margin: -21px 165px 0;' %>
+  	</div>
+  <div style="margin:1% 0">
+  	<%= f.label :presentation_logo, :style => 'margin: 20px 0 -7px 0px' %>
+  	<%= f.file_field :pre_logo, :style => 'margin: -21px 165px 0;' %>
+  	</div>
+  <%= f.submit :class=> "btn btn-default", :style =>'margin: 1% 0' %>
+<% end %>
+</div>

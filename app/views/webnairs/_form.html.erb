@@ -1,0 +1,59 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+
+    $( "span#upload" ).click(function() {
+      $( "div#selection_pre" ).hide();
+    $( "div#upload_pre" ).show();
+    });
+
+    $( "span#select" ).click(function() {
+      $( "div#upload_pre" ).hide();
+    $( "div#selection_pre" ).show();
+    });
+
+</script>
+
+<div>
+  	<%= form_for @webnair, :html => { :multipart => true } do |f| %>
+    <div>
+      <%= f.label :title, :style => 'margin: 20px 0 -7px 0px'  %>
+      <%= f.text_field :title, autofocus: true, :style => 'margin: -20px 112px 0' %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+    </div>
+    <div>
+      <%= f.label :description, :style => 'margin: 20px 0 -7px 0px' %>
+      <%= f.text_area :description, autofocus: true, :style => 'margin: -29px 113px 0; height: 125px;'  %>
+    </div>
+      
+      <div style="margin:1% 0">
+        <%= f.label :choose  %>
+    		<span id="upload">
+          <%= f.radio_button :choice, '1', :id =>"radio-button-1" %>
+          <%= f.label :choice, "New Presentation", :value => "1", :style => 'margin: -18px 25px 0' %>
+        </span>
+        <span id="select">
+      	<%= f.radio_button :choice, '0', :id =>"radio-button-2"  %>
+        <%= f.label :choice, "Select Presentation", :value => "0", :style => 'margin: -18px 25px 0' %>
+      </span>
+  	</div>
+
+      <div id="upload_pre" style="display: none; margin: 1%">
+        <%= f.file_field :ppt %>
+      </div>
+      <div id="selection_pre" style="display: none; margin: 1%">
+
+        <%# presentation_array = Presentation.all.map { |s| [s.avatar_file_name,s.id] } %>
+        <%#= f.select :presentation_id, options_for_select(presentation_array) %>
+		    <%= f.select :presentation_id, options_for_select(current_user.presentations.collect {|s| [s.avatar_file_name,s.id]}), :prompt => "Please select your Presentation", :remote => true  %>
+      </div>
+      <div id="demo">
+
+      </div>
+    
+    <%= f.submit :class=> "btn btn-default", :style =>'margin: 1% 0' %>
+  <% end %>
+</div>
+
+<!-- <script>
+	if($('#radio-button-1').is(':checked') || $('#radio-button-2').is(':checked')){alert(1)}
+</script> -->

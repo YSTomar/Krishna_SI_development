@@ -1,0 +1,21 @@
+<div class="container">
+<h1>Listing Presentation</h1>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Presentations</th>
+  </tr>
+  <% current_user.presentations.each do |pre| %>
+  <tr>
+    <td><%= pre.title %></td>
+    <td><%= pre.description %></td>
+    <td><%= pre.avatar_file_name %></td>
+    <td><%= link_to 'Edit',edit_presentation_path(pre), :class => 'navbar-link' %></td>
+    <td><%= link_to 'Destroy', pre, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    
+  </tr>
+<% end %>
+</table>
+</div>
+<%#= link_to 'Back', presentations_path %> 
